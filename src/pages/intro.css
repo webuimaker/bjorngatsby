@@ -1,0 +1,98 @@
+.intro {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+    background: #2971b9;
+	padding-top: 200px;
+    padding-bottom: 200px;
+  
+}
+.intro.inner{padding-top: 50px;
+    padding-bottom: 50px;}
+  .intro h1 {
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 1.2;
+	text-align: center;
+  }
+ .intro p {
+    width: 80%;
+    font-size: 1.1rem;
+    font-weight: lighter;
+    line-height: 1.4;
+  }
+
+.intro-small {
+  padding-top: 100px;
+  padding-bottom: 30px;
+}
+
+
+.about-info {
+    background-image: url(../images/circlebg.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: 100% 0%;
+}
+
+
+.titlenew{
+	position: relative;
+    font-size: 1.7em;
+    padding-top: 15px;
+	color:#212529;	
+}
+.titlenew:before{
+	width:30px;
+	height:5px;
+	content:"";
+	background:#199a82;
+	position: absolute;
+    top: 0px;
+	
+  }
+.titlenew.white{
+    color: #fff;
+}
+
+.sec3 {
+    background: #2971b9;
+    overflow: hidden;
+}
+
+.sec3 .imagebg {
+    background-image: url(../images//sec3image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.sec3 p{color:#fff;}
+
+
+.newslist .list {
+	 border-bottom: 1px solid #f1f1f1;
+	 padding: 50px 0px;
+}
+ .newslist .date {
+	 font-size: 0.7em;
+}
+ .newslist h2 {
+	 font-size: 1.5em;
+	 font-weight: 600;
+}
+ .newslist .badge {
+	 border: 1px solid #9b9b9b;
+	 border-radius: 4px;
+	 font-size: 0.7em;
+	 padding: 4px;
+}
+ .newslist .image-list li {
+	 list-style: none;
+	 display: inline-block;
+	 margin: 4px;
+	 width: 90px;
+	 height: 90px;
+}
+ .newslist .image-list li img {
+	 max-width: 100%;
+}
+ 
