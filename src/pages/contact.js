@@ -3,7 +3,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { FaCheckCircle } from "react-icons/fa"
 import "./index.css"
-import TechTag from "../components/tags/TechTag"
 
 const AboutPage = (props) => {
     return (

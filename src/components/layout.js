@@ -47,12 +47,10 @@ const Layout = ({ children }) => {
             author={data.site.siteMetadata.author}
             contacts={data.site.siteMetadata.contacts} />
 			
-			 
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-            async
-          />
+		
+		  
+		  
+		 
           <div
           >
             <main className="">{children}</main>

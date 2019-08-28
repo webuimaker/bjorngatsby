@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
+import {Helmet} from "react-helmet";
 
 
 import MobileSocialLinks from "./MobileSocialLinks"
@@ -12,10 +13,19 @@ import logo from "../../images/logo.jpg"
 const Header = ({ siteTitle, tagline, author, contacts }) => {
 
   return (
+  <React.Fragment>
+	<div className="application">
+            <Helmet>
+				<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async type="text/javascript" />
+				<script type="text/x-mathjax-config">
+					
+				</script>
+            </Helmet>
+        </div>
+  
     <header className="head-main" >
 		<div className="container">
-      <div className="head-elements"
-      >
+      <div className="head-elements">
         <h1 className="head-logo " style={{ margin: 0 }}>
           <Link
             to="/"
@@ -45,6 +55,7 @@ const Header = ({ siteTitle, tagline, author, contacts }) => {
 	  
 	  </div>
     </header>
+	</React.Fragment>
   )
 }
 

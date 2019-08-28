@@ -33,11 +33,17 @@ const Tag = ({ pageContext, data }) => {
     return (
         <Layout>
             <SEO title="Home" keywords={[`gatsby`, `javascript`, `react`, `web development`, `node.js`, `graphql`]} />
-            <div className="container">
+            
+			<div className="intro inner">
+				<div className="container">
+				 <h2 className="heading">{tagHeader}</h2>      
+				</div>
+			</div>
+			<div className="container">
                
 
                 <div className="post-list-main">
-                    <i><h2 className="heading">{tagHeader}</h2></i>
+                    
                     {posts.map((post) => {
                         const tags = post.node.frontmatter.tags
                         return (

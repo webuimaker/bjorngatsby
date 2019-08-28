@@ -35,18 +35,23 @@ const BlogPost = (props) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} />
+	  
+	  <div className="intro inner">
+				<div className="container">
+				  <h1>{post.frontmatter.title}</h1> 
+            <p className="text-center"><small><i>Published on </i> {post.frontmatter.date}</small></p>
+				</div>
+			</div>
       <div className="container">
        
 
         <div className="post-main">
           <SEO title={post.frontmatter.title} />
           <div className="mt-3">
-            <h2 className="heading">{post.frontmatter.title}</h2>
+            
             <div className="d-block">
               {getTechTags(tags)}
             </div>
-            <br />
-            <small><i>Published on </i> {post.frontmatter.date}</small>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
             <CustomShareBlock title={post.frontmatter.title} siteName={siteName} url={url} />
           </div>

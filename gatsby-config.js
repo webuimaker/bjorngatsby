@@ -44,6 +44,7 @@ module.exports = {
         plugins: [
           `gatsby-remark-prismjs`,
           `gatsby-remark-katex`,
+		  `gatsby-remark-mathjax`,
 		  `gatsby-remark-responsive-iframe`,
           {
             resolve: `gatsby-remark-images`,
