@@ -43,7 +43,6 @@ module.exports = {
       options: {
         plugins: [
           `gatsby-remark-prismjs`,
-          `gatsby-remark-katex`,
 		  `gatsby-remark-mathjax`,
 		  `gatsby-remark-responsive-iframe`,
           {

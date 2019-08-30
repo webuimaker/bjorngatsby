@@ -1,90 +1,125 @@
 import React from "react"
-import { graphql } from "gatsby"
+import Helmet from "react-helmet"
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import "./blog-post.css"
-import "katex/dist/katex.min.css"
 
 
+function waitForGlobal(name, timeout = 300) {
+  return new Promise((resolve, reject) => {
+    let waited = 0
 
-
-import TechTag from "../components/tags/TechTag"
-import CustomShareBlock from "../components/CustomShareBlock"
-
-
-const BlogPost = (props) => {
-  const post = props.data.markdownRemark
-  const labels = props.data.site.siteMetadata.labels
-  const siteName = props.data.site.siteMetadata.title 
-  const siteUrl = props.data.site.siteMetadata.url
-  const url = `${siteUrl}${props.pageContext.slug}`;
-  const tags = post.frontmatter.tags
-
-  const getTechTags = (tags) => {
-    const techTags = []
-    tags.forEach((tag, i) => {
-      labels.forEach((label) => {
-        if (tag === label.tag) {
-          techTags.push(<TechTag key={i} tag={label.tag} tech={label.tech} name={label.name} size={label.size} color={label.color} />)
+    function wait(interval) {
+      setTimeout(() => {
+        waited += interval
+        // some logic to check if script is loaded
+        // usually it something global in window object
+        if (window[name] !== undefined) {
+          return resolve()
         }
+        if (waited >= timeout * 1000) {
+          return reject({ message: "Timeout" })
+        }
+        wait(interval * 2)
+      }, interval)
+    }
+
+    wait(30)
+  })
+}
+
+/* eslint-disable no-restricted-globals */
+class BlogPostTemplate extends React.Component {
+  componentDidMount() {
+    waitForGlobal("MathJax").then(() => {
+      top.MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["[", "]"]],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ["script", "noscript", "style", "textarea", "pre"],
+          TeX: {
+            equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"],
+          },
+        },
       })
     })
-    return techTags
+    if (top.MathJax != null) {
+      top.MathJax.Hub.Queue(["Typeset", top.MathJax.Hub])
+    }
   }
 
-  return (
-    <Layout>
-      <SEO title={post.frontmatter.title} />
-	  
-	  <div className="intro inner">
+  componentDidUpdate() {
+    if (top.MathJax != null) {
+      top.MathJax.Hub.Queue(["Typeset", top.MathJax.Hub])
+    }
+  }
+
+  render() {
+    const post = this.props.data.markdownRemark
+    const siteTitle = this.props.data.site.siteMetadata.title
+
+    return (
+			
+	
+	
+	
+	
+	
+      <Layout location={this.props.location} title={siteTitle}>
+        <SEO
+          title={post.frontmatter.title}
+          
+        />
+        <Helmet>
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            async
+          />
+        </Helmet>
+		<div className="intro inner mb-5">
 				<div className="container">
 				  <h1>{post.frontmatter.title}</h1> 
             <p className="text-center"><small><i>Published on </i> {post.frontmatter.date}</small></p>
 				</div>
 			</div>
-      <div className="container">
-       
+		
+        <article className="container"> 
+         
+          <section dangerouslySetInnerHTML={{ __html: post.html }} />
+          <hr
+           
+          />
+         
+        </article>
 
-        <div className="post-main">
-          <SEO title={post.frontmatter.title} />
-          <div className="mt-3">
-            
-            <div className="d-block">
-              {getTechTags(tags)}
-            </div>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
-            <CustomShareBlock title={post.frontmatter.title} siteName={siteName} url={url} />
-          </div>
-        </div>
-      </div>
-    </Layout>
-  )
+      </Layout>
+    )
+  }
 }
 
-export const query = graphql`
-  query($slug: String!) {
-      site {
-        siteMetadata {
-          url
-          title
-          labels {
-              tag
-              tech 
-              name 
-              size 
-              color
-          }
-        }
+export default BlogPostTemplate
+
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        author
+      }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 160)
       html
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        tags
+        
       }
     }
   }
 `
-
-export default BlogPost

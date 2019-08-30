@@ -15,12 +15,15 @@ const Header = ({ siteTitle, tagline, author, contacts }) => {
   return (
   <React.Fragment>
 	<div className="application">
-            <Helmet>
-				<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async type="text/javascript" />
-				<script type="text/x-mathjax-config">
-					
-				</script>
-            </Helmet>
+           <Helmet
+         
+        >
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            async
+          />
+        </Helmet>
         </div>
   
     <header className="head-main" >
