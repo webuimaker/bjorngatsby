@@ -89,7 +89,10 @@ class BlogPostTemplate extends React.Component {
 		
         <article className="container"> 
          
-          <section dangerouslySetInnerHTML={{ __html: post.html }} />
+          <section  style={{
+                                  padding: "30px 18% 100px",
+                                
+                                }} dangerouslySetInnerHTML={{ __html: post.html }} />
           <hr
            
           />
